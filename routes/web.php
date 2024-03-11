@@ -7,4 +7,3 @@ use App\Http\Controllers\DashboardController;
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/contact', [HomeController::class, 'contact']);
 Route::get('/dashboard', [DashboardController::class, 'dashboard']);
-x

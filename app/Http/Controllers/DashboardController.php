@@ -10,9 +10,6 @@ class DashboardController extends Controller
     {
         return view('dashboard');
     }
-    public function getData()
-    {
-        $databarang = 
-    }
+   
 
 }
