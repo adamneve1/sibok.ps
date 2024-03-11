@@ -1,20 +1,18 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+<<<<<<< HEAD
 Use App\Http\Controllers\HomeController;
 Use App\Http\Controllers\DashboardController;
+=======
+Use App\Http\Controllers\RegisterController;
+>>>>>>> c1451fcc1d3f52fca017da9fb34ba2419af5b592
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
+<<<<<<< HEAD
 //Route::get('/', function () {
  //   return view('welcome');
 //});
@@ -24,3 +22,9 @@ Route::get('/contact', [HomeController::class, 'contact']);
 
 Route::get('/dashboard', [DashboardController::class, 'dashboard']);
 
+=======
+Route::get('/', [RegisterController::class, 'index']);
+Route::get('/contact', [RegisterController::class, 'contact']);
+
+?>
+>>>>>>> c1451fcc1d3f52fca017da9fb34ba2419af5b592
