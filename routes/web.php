@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+Use App\Http\Controllers\HomeController;
+Use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +15,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+ //   return view('welcome');
+//});
+
+Route::get('/', [HomeController::class, 'index']);
+Route::get('/contact', [HomeController::class, 'contact']);
+
+Route::get('/dashboard', [DashboardController::class, 'dashboard']);
+
