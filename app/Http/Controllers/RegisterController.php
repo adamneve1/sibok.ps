@@ -21,4 +21,19 @@ class RegisterController extends Controller
     public function contact(){
         return view("contact");
     }
+
+    public function getData(){
+       $dataRegister = [
+        ["id_register" => 1, "username" => "nagabonar", "password" => "titisanrajaiblis123", "nama_user" => "Jeje Wadidaw", "harga" => 22000],
+        ["id_register" => 1, "username" => "nagabonar", "password" => "titisanrajaiblis123", "nama_user" => "Jeje Wadidaw", "harga" => 22000],
+        ["id_register" => 1, "username" => "nagabonar", "password" => "titisanrajaiblis123", "nama_user" => "Jeje Wadidaw", "harga" => 22000],
+        ["id_register" => 1, "username" => "nagabonar", "password" => "titisanrajaiblis123", "nama_user" => "Jeje Wadidaw", "harga" => 22000],
+    ];  
+       return $dataRegister;
+    }
+
+    public function register(){
+        $data = $this->getData();
+        return view("register", compact("data"));
+    }
 }
