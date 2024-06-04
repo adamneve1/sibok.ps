@@ -6,7 +6,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\User\CartController;
 use App\Http\Controllers\User\CheckoutController;
-use App\Http\Controllers\User\DashboardController;
+
 use App\Http\Controllers\User\ProductController as UserProductController;
 use App\Http\Controllers\User\ProductListController;
 use App\Http\Controllers\User\UserController;
@@ -47,20 +47,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'redirectAdmin'], function ()
 Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
 
-    //products routes 
-    Route::get('/products', [ProductController::class, 'index'])->name('admin.products.index');
-    Route::post('/products/store',[ProductController::class,'store'])->name('admin.products.store');
-    Route::put('/products/update/{id}',[ProductController::class,'update'])->name('admin.products.update');
-    Route::delete('/products/image/{id}',[ProductController::class,'deleteImage'])->name('admin.products.image.delete');
-    Route::delete('/products/destory/{id}',[ProductController::class,'destory'])->name('admin.products.destory');
-    
-});
-
-//end
-
-
-Route::get('/', [UserController::class,'index'])->name('home');
-Route::get('/dashboard',[DashboardController::class,'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 
     //chekcout 
@@ -87,7 +73,13 @@ Route::prefix('products')->controller(ProductListController::class)->group(funct
     
 });
 
+//end
 
+    //rute produk fix
+    Route::get('/products', [ProductController::class, 'index'])->name('admin.products.index');
+ 
+    
+});
 
 //end
 
