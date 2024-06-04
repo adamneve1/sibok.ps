@@ -70,4 +70,5 @@ Aprin
 
 testdewita 2
 testalfath
->>>>>>> 95c32398b24673fdcccc428e35da20f853ccbf24
+>>>>>>> 95c32398b24673fdcccc428e35da20f853ccbf24'
+tes chris
