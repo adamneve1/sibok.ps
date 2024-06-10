@@ -14,9 +14,9 @@ class ProductSeeder extends Seeder
     public function run(): void
     {
         Product::create([
-            'title' => 'testing produk sibok',
-            'price' => 19000,
-            'quantity' => 100,
+            'title' => 'produk sibok',
+            'price' => 19.000,
+            'quantity' => 3,
             'category_id' => 1,
             'brand_id' =>1,
             'description'=>'produk 1 untuk sibok ini merupakan deskripsi dari sebuah produk 1'
