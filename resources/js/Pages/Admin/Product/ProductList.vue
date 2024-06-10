@@ -17,6 +17,16 @@ const openAddModal = () => {
 </script>
 <template> 
 <section class="bg-gray-50 dark:bg-gray-900 p-3 sm:p-5">
+    <el-dialog v-model="isAddProduct" title="Tips" width="500" :before-close="handleClose">
+      <span>This is a message</span>
+      <template #footer>
+        <div class="dialog-footer">
+          <el-button @click="isAddProduct = false">Cancel</el-button>
+          <el-button type="primary" @click="isAddProduct = false">Confirm</el-button>
+        </div>
+      </template>
+    </el-dialog>
+    
     <div class="mx-auto max-w-screen-xl px-4 lg:px-12">
         <!-- Start coding here -->
         <div class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">

@@ -8,6 +8,7 @@ import { ZiggyVue } from '../../vendor/tightenco/ziggy';
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 import ElementPlus from 'element-plus'
+import 'element-plus/dist/index.css'
 
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,
@@ -15,7 +16,7 @@ createInertiaApp({
     setup({ el, App, props, plugin }) {
         return createApp({ render: () => h(App, props) })
             .use(plugin)
-            .use(ZiggyVue)
+            .use(ZiggyVue, Ziggy)
             .use(ElementPlus)
             .mount(el)
     },
