@@ -5,7 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-use Spatie\Sluggable\getSlugOptions;
+
+use Spatie\Sluggable\SlugOptions;
 use Spatie\Sluggable\HasSlug;
 
 class Category extends Model
@@ -16,18 +17,16 @@ class Category extends Model
 
     protected $fillable = ['name', 'slug'];
 
-
     public function products()
     {
-
-
         return $this->hasMany(Product::class);
-        
     }
 
-    public function getSlugOptions():SlugOptions{
+
+    public function getSlugOptions(): SlugOptions
+    {
         return SlugOptions::create()
-        ->generateSlugFrom('name')
-        ->saveSlugTo('slug');
+            ->generateSlugsFrom('name')
+            ->saveSlugsTo('slug');
     }
 }

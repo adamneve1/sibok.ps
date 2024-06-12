@@ -4,30 +4,20 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Spatie\Sluggable\getSlugOptions;
 use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions; // Pastikan Anda mengimpor kelas yang benar
 
 class Brand extends Model
 {
-    use HasFactory;
-    use HasSlug;
+    use HasFactory, HasSlug;
 
-
-    protected $fillable = ['name', 'slug'];
-
-    public function products()
+    /**
+     * Get the options for generating the slug.
+     */
+    public function getSlugOptions(): SlugOptions
     {
-        return $this->hasMany(Product::class);
-    }
-        public function getSlugOptions():SlugOptions
-        {
         return SlugOptions::create()
-        ->generateSlugFrom('name')
-        ->saveSlugTo('slug');
-
-
-
-}
-
-
+            ->generateSlugsFrom('name')
+            ->saveSlugsTo('slug');
+    }
 }

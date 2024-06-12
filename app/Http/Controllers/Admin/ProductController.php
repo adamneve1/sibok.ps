@@ -1,11 +1,15 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-use App\Models\Product;
 
+use App\Models\Product;
 use App\Http\Controllers\Controller;
+use App\Models\Brand;
+use App\Models\Category;
+use App\Models\ProductImage;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
@@ -13,10 +17,18 @@ class ProductController extends Controller
    
     public function index() {
 
-        $products = Product::get();
-        return Inertia::render('Admin/Product/Index',['products'=>$products]);
-        
-        
+        $products = Product::with('category', 'brand', 'product_images')->get();
+        $brands = Brand::get();
+        $categories = Category::get();
+
+        return Inertia::render(
+            'Admin/Product/Index',
+            [
+                'products' => $products,
+                'brands' => $brands,
+                'categories' => $categories
+            ]
+        );
     }
     public function store(Request $request) {
         $product = new Product;
@@ -47,6 +59,6 @@ class ProductController extends Controller
     }
     
 }
-return redirect()->route('admin.products.index')->with('Success', 'Product Created Successfully');
+return redirect()->route('admin.products.index')->with('success', 'Hooray, new product!');
     }
 }
