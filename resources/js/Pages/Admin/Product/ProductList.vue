@@ -26,6 +26,9 @@ const category_id = ref('')
 const brand_id = ref('')
 const inStock = ref('')
 const productImages = ref([])
+const dialogImageUrl = ref('')
+
+
 //produk dari data
 
 
@@ -37,7 +40,22 @@ const openAddModal = () => {
     
 }
 
-// add product method 
+//upload gambar
+const handleFileChange = (file) => {
+    console.log(file)
+    productImages.value.push(file)
+}
+
+const handlePictureCardPreview = (file) => {
+    dialogImageUrl.value = file.url
+    dialogVisible.value = true
+}
+const handleRemove = (file) => {
+    console.log(file)
+}
+
+
+// tambah produk
 const AddProduct = async () => {
     const formData = new FormData();
     formData.append('title', title.value);
@@ -46,7 +64,7 @@ const AddProduct = async () => {
     formData.append('description', description.value);
     formData.append('brand_id', brand_id.value);
     formData.append('category_id', category_id.value);
-    // Append product images to the FormData
+   
     for (const image of productImages.value) {
         formData.append('product_images[]', image.raw);
     }
@@ -140,11 +158,11 @@ const openEditModal = (product) =>{
 <div class="grid md:gap-6">
     <div class="relative z-0 w-full mb-6 group">
         <el-upload
-    v-model:file-list="fileList"
-    action="https://run.mocky.io/v3/9d059bf9-4660-45f2-925d-ce80ad6c4d15"
-    list-type="picture-card"
+    v-model:file-list="productImages"
+
+    list-type="picture-card" multiple
     :on-preview="handlePictureCardPreview"
-    :on-remove="handleRemove"
+    :on-remove="handleRemove" :on-change="handleFileChange"
   >
     <el-icon><Plus /></el-icon>
   </el-upload>
@@ -263,13 +281,25 @@ const openEditModal = (product) =>{
                     <tbody>
                         <tr v-for="product in products" :key="product.id" class="border-b dark:border-gray-700">
                             <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{product.title}}.&#34;</th>
-                            <td class="px-4 py-3">{{ product.category_id }}</td>
-                            <td class="px-4 py-3">{{ product.brand_id }}</td>
+                            <td class="px-4 py-3">{{ product.category.name}}</td>
+                            <td class="px-4 py-3">{{ product.brand.name }}</td>
                             <td class="px-4 py-3">{{ product.quantity }}</td>
                             <td class="px-4 py-3">{{ product.price }}</td>
-                            <td class="px-4 py-3">{{ product.inStock }}</td>
-                            <td class="px-4 py-3">{{ product.published }}</td>
-                          
+                            <td class="px-4 py-3">
+                                    <span v-if="product.inStock == 0"
+                                        class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">inStock</span>
+                                    <span v-else
+                                        class="bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">Out
+                                        of Stock</span>
+
+                                </td>
+                            <td class="px-4 py-3">
+                                    <button v-if="product.published == 0" type="button"
+                                        class="px-3 py-2 text-xs font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Published</button>
+                                    <button v-else type="button"
+                                        class="px-3 py-2 text-xs font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">UnPublished</button>
+
+                                </td>
 
 
 
