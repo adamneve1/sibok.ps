@@ -16,14 +16,7 @@ use Inertia\Inertia;
 
 //routes pengguna
 
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'LaravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-});
+Route::get('/', [UserController::class,'index'])->name('home');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
