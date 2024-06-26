@@ -18,7 +18,8 @@ onMounted(() => {
     <Header></Header>
     <!-- end -->
     <!-- main content -->
-    <Hero></Hero>
+     <!-- here-->
+
     <slot />
     <!-- end -->
     <!-- footer -->
